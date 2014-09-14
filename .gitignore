@@ -8,3 +8,5 @@ doc/
 out/
 resources/public/app.js
 target/
+node_modules
+.DS_Store
