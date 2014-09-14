@@ -1,0 +1,10 @@
+.idea/
+.lein-cljsbuild-compiler-0/
+.lein-repl-history
+.nrepl-port
+.repl/
+LICENSE
+doc/
+out/
+resources/public/app.js
+target/
