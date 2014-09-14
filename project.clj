@@ -1,11 +1,8 @@
 (defproject hello-repl "0.1.0-SNAPSHOT"
 
-  :description "FIXME: write description"
+  :description "clj-cljs-template"
 
-  :url "http://example.com/FIXME"
-
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :url "https://github.com/torgeir/clj-cljs-browser-repl-vim-fireplace-setup"
 
   :dependencies [[org.clojure/clojurescript "0.0-2280"]
                  [org.clojure/clojure "1.6.0"]
