@@ -7,7 +7,9 @@
   :dependencies [[org.clojure/clojurescript "0.0-2280"]
                  [org.clojure/clojure "1.6.0"]
                  [compojure "1.1.8"]
-                 [http-kit "2.1.16"]]
+                 [http-kit "2.1.16"]
+                 [quiescent "0.1.4"]
+                 [org.clojure/core.async "0.1.338.0-5c5012-alpha"]]
 
   :hooks [leiningen.cljsbuild]
 
