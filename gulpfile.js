@@ -3,11 +3,23 @@ var fs   = require('fs'),
 
 var isProduction = (process.env.NODE_ENV === 'production');
 
-var tasks = fs.readdirSync('./tasks');
+fs.readdirSync('./tasks')
+  .filter(without("config.js"))
+  .map(strip(".js"))
+  .forEach(function (taskname) {
+    var task = require('./tasks/' + taskname);
+    var deps = task.deps || [];
+    gulp.task(taskname, deps, task(isProduction));
+  });
 
-tasks.forEach(function (filename) {
-  var task = filename.replace('.js', '');
-  if (task === 'config') return;
+function without (filename) {
+  return function (f) {
+    return f.indexOf(filename) == -1;
+  };
+}
 
-  gulp.task(task, require('./tasks/' + filename)(isProduction));
-});
+function strip (str) {
+  return function (f) {
+    return f.replace(str, "");
+  };
+}
