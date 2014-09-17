@@ -5,9 +5,14 @@ var c = exports;
 // less
 c.PATH_LESS_ENTRY   = 'resources/less/app.less';
 c.FOLDER_LESS       = 'resources/less';
+c.FILES_LESS        = 'resources/less/**';
 c.TARGET_FILE_CSS   = 'app.css';
 c.TARGET_FOLDER_CSS = 'target/classes/public/css';
 c.TARGET_PATH_CSS   = 'target/classes/public/css/app.css';
+
+// fonts
+c.FOLDER_FONTS        = 'node_modules/font-awesome/fonts/*';
+c.TARGET_FOLDER_FONTS = 'target/classes/public/fonts';
 
 c.TARGET_FOLDER_ALL = [
   c.TARGET_FOLDER_CSS
