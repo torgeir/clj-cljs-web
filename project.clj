@@ -13,6 +13,8 @@
 
   :hooks [leiningen.cljsbuild]
 
+  :plugins [[lein-npm "0.4.0"]]
+
   :source-paths ["src/clj"]
 
   :main web
@@ -33,4 +35,40 @@
                                                     ; :source-map "target/classes/public/js/app.js.map"
                                                     :externs ["externs.js"]
                                                     :optimizations :whitespace
-                                                    :pretty-print true}}]}}})
+                                                    :pretty-print true}}]}}}
+
+  :nodejs {:scripts {:make  "./node_modules/.bin/gulp"
+                     :watch "./node_modules/.bin/gulp watch"}}
+
+  :node-dependencies [[browserify "^5.11.2"]
+                      [connect "^3.2.0"]
+                      [del "^0.1.3"]
+                      [es6ify "^1.3.0"]
+                      [font-awesome "^4.2.0"]
+                      [gulp "^3.8.8"]
+                      [gulp-autoprefixer "^0.0.10"]
+                      [gulp-cache "^0.2.2"]
+                      [gulp-concat "^2.4.0"]
+                      [gulp-debug "^1.0.1"]
+                      [gulp-embedlr "^0.5.2"]
+                      [gulp-htmlmin "^0.2.0"]
+                      [gulp-if "^1.2.4"]
+                      [gulp-imagemin "^1.0.1"]
+                      [gulp-jshint "^1.8.4"]
+                      [gulp-less "^1.3.5"]
+                      [gulp-livereload "^2.1.1"]
+                      [gulp-minify-css "^0.3.8"]
+                      [gulp-notify "^1.6.0"]
+                      [gulp-postcss "^1.0.2"]
+                      [gulp-rev "^1.1.0"]
+                      [gulp-sourcemaps "^1.1.5"]
+                      [gulp-template "^1.1.0"]
+                      [gulp-uglify "^1.0.1"]
+                      [gulp-util "^3.0.1"]
+                      [open "^0.0.5"]
+                      [react "^0.11.1"]
+                      [serve-static "^1.6.1"]
+                      [vinyl-buffer "^1.0.0"]
+                      [vinyl-source-stream "^1.0.0"]
+                      [watchify "^1.0.2"]]
+  )
