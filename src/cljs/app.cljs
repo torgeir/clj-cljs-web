@@ -8,9 +8,11 @@
 
 (repl/connect "http://localhost:9000/repl")
 
-(def app-state {:name "bob"})
-
 (q/defcomponent Hello [{:keys [name]}]
   (d/text {} (str "Hello " name)))
 
-(q/render (Hello app-state) (.querySelector js/document ".app"))
+(defn $ [selector]
+  (.querySelector js/document selector))
+
+(def app-state {:name "r"})
+(q/render (Hello app-state) ($ ".app"))
