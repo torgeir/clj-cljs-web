@@ -2,9 +2,9 @@
 
 Whats needed to have vim fireplace connect to the cljs.browser.repl using piggieback, so you can evaluate cljs directly from vim against the dev tools console.
 
-- run `lein run`
 - run `lein cljsbuild auto`
 - run `lein repl`
+- run `(use 'web)` and `(start-server)`
 - open vim from the same folder
 - in vim `:e src/cljs/app.cljs`, and `:Piggieback 9000`, which sets up a server on localhost 9000
 - open `http://localhost:3000` in the browser
