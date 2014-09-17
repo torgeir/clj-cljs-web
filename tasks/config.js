@@ -14,8 +14,15 @@ c.TARGET_PATH_CSS   = 'target/classes/public/css/app.css';
 c.FOLDER_FONTS        = 'node_modules/font-awesome/fonts/*';
 c.TARGET_FOLDER_FONTS = 'target/classes/public/fonts';
 
+// images
+c.FOLDER_IMAGES        = 'resources/images';
+c.FILES_IMAGES         = 'resources/images/**';
+c.TARGET_FOLDER_IMAGES = 'target/classes/public/images';
+
 c.TARGET_FOLDER_ALL = [
-  c.TARGET_FOLDER_CSS
+  c.TARGET_FOLDER_CSS,
+  c.TARGET_FOLDER_FONTS,
+  c.TARGET_FOLDER_IMAGES,
 ];
 
 c.handleErrors = function handleErrors (description) {
