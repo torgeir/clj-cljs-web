@@ -1,30 +1,34 @@
 var embedlr    = require('gulp-embedlr'),
+    path       = require('path'),
     gulp       = require('gulp'),
     gulpif     = require('gulp-if'),
     handlebars = require('gulp-compile-handlebars'),
     minhtml    = require('gulp-htmlmin');
 
-var config = require('./config');
+var c = require('./config');
 
 module.exports = function (minify) {
 
   return function () {
+
     var manifest;
 
-    manifest = require("." + config.TARGET_FOLDER + "/rev-manifest.json");
-    for (var key in manifest) {
-      // replace full path in key, so only app.js and app.css are left
-      var newkey = key.replace(/.*\//, "");
-      manifest[newkey] = manifest[key];
-      delete manifest[key];
+    if (minify) {
+      manifest = require(path.join('..', c.target("rev-manifest.json")));
+      for (var key in manifest) {
+        // replace full path in key, so only app.js and app.css are left
+        var newkey = key.replace(/.*\//, "");
+        manifest[newkey] = manifest[key];
+        delete manifest[key];
+      }
     }
 
-    var templateData = config.FILES_REV.reduce(function (acc, conf) {
-      acc[conf.name] = minify ? manifest[conf.targetFile] : conf.entryPath.replace(config.TARGET_FOLDER + "/", "");
+    var templateData = c.FILES_REV.reduce(function (acc, conf) {
+      acc[conf.name] = minify ? manifest[conf.targetFile] : conf.entryPath;
       return acc;
     }, {});
 
-    return gulp.src(config.PATH_INDEX)
+    return gulp.src(c.PATH_INDEX)
       .pipe(gulpif(!minify, embedlr()))
       .pipe(handlebars(templateData))
       .pipe(gulpif(minify, minhtml({
@@ -34,7 +38,7 @@ module.exports = function (minify) {
         minifyCSS: true,
         minifyJS: true,
       })))
-      .pipe(gulp.dest(config.TARGET_FOLDER));
+      .pipe(gulp.dest(c.target()));
     };
 };
 

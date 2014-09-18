@@ -38,9 +38,9 @@
                                                     :pretty-print true}}]}
                    :injections [(use 'web)]}}
 
-  :nodejs {:scripts {:make    "./node_modules/.bin/gulp"
-                     :clean   "./node_modules/.bin/gulp clean"
-                     :watch   "GULP_IS_WATCH=true ./node_modules/.bin/gulp watch"}}
+  :nodejs {:scripts {:make  "./node_modules/.bin/gulp"
+                     :clean "./node_modules/.bin/gulp clean"
+                     :watch "GULP_IS_WATCH=true ./node_modules/.bin/gulp watch"}}
 
   :node-dependencies [[bluebird "^2.3.2"]
                       [browserify "^5.11.2"]

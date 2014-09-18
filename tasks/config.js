@@ -1,54 +1,63 @@
-var notify = require('gulp-notify');
+var notify = require('gulp-notify'),
+    path   = require('path');
 
 var c = exports;
 
+c.target = function (folder) {
+  var root = c.TARGET_FOLDER;
+  if (folder) {
+    return path.join(root, folder);
+  }
+  return root;
+};
+
+c.TARGET_FOLDER = "./target/classes/public";
+
 // fonts
 c.FOLDER_FONTS            = './node_modules/font-awesome/fonts/*';
-c.TARGET_FOLDER_FONTS     = './target/classes/public/fonts';
-c.TARGET_FOLDER_ALL_FONTS = './target/classes/public/fonts/**';
+c.TARGET_FOLDER_FONTS     = 'fonts';
 
 // images
 c.FOLDER_IMAGES            = './resources/images';
 c.FILES_IMAGES             = './resources/images/**';
-c.TARGET_FOLDER_IMAGES     = './target/classes/public/images';
-c.TARGET_FOLDER_ALL_IMAGES = './target/classes/public/images/**';
+c.TARGET_FOLDER_IMAGES     = 'images';
 
 // less
 c.FOLDER_LESS           = './resources/less';
 c.FILES_LESS            = './resources/less/**';
 c.PATH_LESS_ENTRY       = './resources/less/app.less';
 c.TARGET_FILE_CSS       = 'app.css';
-c.TARGET_FOLDER_CSS     = './target/classes/public/css';
-c.TARGET_PATH_CSS       = './target/classes/public/css/app.css';
-c.TARGET_FOLDER_ALL_CSS = './target/classes/public/css/**';
+c.TARGET_PATH_CSS       = 'css/app.css';
+c.TARGET_FOLDER_CSS     = 'css';
 
 // js
 c.FOLDER_JS            = './resources/js';
 c.FILES_JS             = './resources/js/**';
 c.PATH_JS_ENTRY        = './resources/js/some-lib.js';
 c.TARGET_FILE_JS       = 'some-lib.js';
-c.TARGET_FOLDER_JS     = './target/classes/public/js';
-c.TARGET_PATH_JS       = './target/classes/public/js/some-lib.js';
-c.TARGET_FOLDER_ALL_JS = './target/classes/public/js/**';
+c.TARGET_PATH_JS       = 'js/some-lib.js';
+c.TARGET_FOLDER_JS     = 'js';
 
 // index file
-c.PATH_INDEX          = "./resources/html/index.html";
-
-c.TARGET_FOLDER = "./target/classes/public";
+c.PATH_INDEX = "./resources/html/index.html";
 
 // rev
 c.FILES_REV = [
-  { name: "appCss",   entryPath: c.TARGET_PATH_CSS, targetFile: c.TARGET_FILE_CSS },
-  { name: "appLibJs", entryPath: c.TARGET_PATH_JS,  targetFile: c.TARGET_FILE_JS },
-  { name: "appCljs",  entryPath: "./target/classes/public/cljs/app.js", targetFile: "app.js" }
+  { name: "appCss",   entryPath: c.TARGET_PATH_CSS,            targetFile: c.TARGET_FILE_CSS },
+  { name: "appLibJs", entryPath: c.TARGET_PATH_JS,             targetFile: c.TARGET_FILE_JS },
+  { name: "appCljs",  entryPath: path.join("cljs", "app.js"),  targetFile: "app.js" }
 ];
 
 c.TARGET_FOLDER_ALL = [
-  c.TARGET_FOLDER_ALL_CSS,
-  c.TARGET_FOLDER_ALL_FONTS,
-  c.TARGET_FOLDER_ALL_IMAGES,
-  c.TARGET_FOLDER_ALL_JS
-];
+    c.TARGET_FOLDER_CSS,
+    c.TARGET_FOLDER_FONTS,
+    c.TARGET_FOLDER_IMAGES,
+    c.TARGET_FOLDER_JS
+  ]
+  .map(c.target)
+  .map(function (folder) {
+    return folder + "/**";
+  });
 
 c.handleErrors = function handleErrors (description) {
   return function () {

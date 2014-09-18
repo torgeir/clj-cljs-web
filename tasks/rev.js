@@ -2,26 +2,26 @@ var gulp = require('gulp'),
     rev  = require('gulp-rev'),
     path = require('path');
 
-var config = require('./config');
+var c = require('./config');
 
 module.exports = function revisions (minify) {
-  return function() {
+  if (!minify) {
+    return function (fn) {
+      // Don't add hashes to files names if we're not minifying
+      return fn();
+    };
+  }
 
-    // if (!minify) {
-    //   // Don't add hashes to files names if we're not minifying
-    //   fn();
-    //   return;
-    // }
-
-    var files = config.FILES_REV.map(function (conf) {
-      return conf.entryPath;
+  return function () {
+    var files = c.FILES_REV.map(function (conf) {
+      return c.target(conf.entryPath);
     });
 
-    return gulp.src(files, { base: path.join(process.cwd(), config.TARGET_FOLDER) })
+    return gulp.src(files, { base: path.join(process.cwd(), c.TARGET_FOLDER) })
       .pipe(rev())
-      .pipe(gulp.dest(config.TARGET_FOLDER))
+      .pipe(gulp.dest(c.target()))
       .pipe(rev.manifest())
-      .pipe(gulp.dest(config.TARGET_FOLDER));
+      .pipe(gulp.dest(c.target()));
   };
 };
 

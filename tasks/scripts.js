@@ -9,7 +9,7 @@ var gulp       = require('gulp'),
     uglify     = require('gulp-uglify'),
     watchify   = require('watchify');
 
-var config = require("./config");
+var c = require("./config");
 
 var watch = process.env.GULP_IS_WATCH;
 
@@ -36,7 +36,7 @@ module.exports = function scripts (minify) {
 
     bundler
       // https://github.com/sebastiandeutsch/es6ify-test/blob/master/browserify.js
-      .add(config.PATH_JS_ENTRY)
+      .add(c.PATH_JS_ENTRY)
       .transform(es6ify.configure(/^(?!.*node_modules)+.+\.js$/))
       .on('update', rebundle);
 
@@ -44,11 +44,11 @@ module.exports = function scripts (minify) {
 
     function rebundle () {
       var stream = bundler.bundle();
-      return gulpif(minify, stream, stream.on('error', config.handleErrors('Browserify')))
-        .pipe(source(config.TARGET_FILE_JS))
+      return gulpif(minify, stream, stream.on('error', c.handleErrors('Browserify')))
+        .pipe(source(c.TARGET_FILE_JS))
         .pipe(buffer())
         .pipe(gulpif(minify, uglify()))
-        .pipe(gulp.dest(config.TARGET_FOLDER_JS))
+        .pipe(gulp.dest(c.target(c.TARGET_FOLDER_JS)))
         .pipe(gulpif(watch, notify({ title: "Browserify", message: 'reloaded' })));
     }
   };

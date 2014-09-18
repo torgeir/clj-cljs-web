@@ -1,9 +1,9 @@
 var del = require('del');
 
-var config = require('./config');
+var c = require('./config');
 
 module.exports = function (prod) {
   return function (fn) {
-    del(config.TARGET_FOLDER_ALL, fn);
+    del(c.TARGET_FOLDER, fn);
   };
 };
