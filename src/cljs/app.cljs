@@ -1,12 +1,12 @@
 (ns app
   (:require [logger :refer [log]]
+            [repl :refer [connect-to-repl]]
             [quiescent :as q :include-macros true]
-            [quiescent.dom :as d]
-            [clojure.browser.repl :as repl]))
+            [quiescent.dom :as d]))
 
-(log "boyah")
+(set! (.-repl js/window) connect-to-repl)
 
-(repl/connect "http://localhost:9000/repl")
+(log "yes")
 
 (q/defcomponent Hello [{:keys [name]}]
   (d/text {} (str "Hello " name)))
@@ -14,5 +14,9 @@
 (defn $ [selector]
   (.querySelector js/document selector))
 
-(def app-state {:name "r"})
+(defn $$ [selector]
+  (.querySelectorAll js/document selector))
+
+(def app-state {:name "torgeir"})
+
 (q/render (Hello app-state) ($ ".app"))

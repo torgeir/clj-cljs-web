@@ -21,7 +21,7 @@
 
   :profiles {
              :prod {:cljsbuild {:builds [{:source-paths ["src/cljs"]
-                                          :compiler {:output-to "target/classes/public/js/app.js"
+                                          :compiler {:output-to "target/classes/public/cljs/app.js"
                                                      :externs ["externs.js"]
                                                      :optimizations :advanced
                                                      :pretty-print false}}]}}
@@ -30,17 +30,20 @@
                    :dependencies [[com.cemerick/piggieback "0.1.3"]]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    :cljsbuild {:builds [{:source-paths ["src/cljs"]
-                                         :compiler {:output-to  "target/classes/public/js/app.js"
-                                                    ; :output-dir "target/classes/public/js"
-                                                    ; :source-map "target/classes/public/js/app.js.map"
+                                         :compiler {:output-to  "target/classes/public/cljs/app.js"
+                                                    ; :output-dir "target/classes/public/cljs"
+                                                    ; :source-map "target/classes/public/cljs/app.js.map"
                                                     :externs ["externs.js"]
                                                     :optimizations :whitespace
-                                                    :pretty-print true}}]}}}
+                                                    :pretty-print true}}]}
+                   :injections [(use 'web)]}}
 
-  :nodejs {:scripts {:make  "./node_modules/.bin/gulp"
-                     :watch "./node_modules/.bin/gulp watch"}}
+  :nodejs {:scripts {:make    "./node_modules/.bin/gulp"
+                     :clean   "./node_modules/.bin/gulp clean"
+                     :watch   "GULP_IS_WATCH=true ./node_modules/.bin/gulp watch"}}
 
-  :node-dependencies [[browserify "^5.11.2"]
+  :node-dependencies [[bluebird "^2.3.2"]
+                      [browserify "^5.11.2"]
                       [connect "^3.2.0"]
                       [del "^0.1.3"]
                       [es6ify "^1.3.0"]
@@ -65,6 +68,7 @@
                       [gulp-template "^1.1.0"]
                       [gulp-uglify "^1.0.1"]
                       [gulp-util "^3.0.1"]
+                      [gulp-compile-handlebars "^0.2.0"]
                       [open "^0.0.5"]
                       [react "^0.11.1"]
                       [serve-static "^1.6.1"]
