@@ -14,29 +14,29 @@ c.target = function (folder) {
 c.TARGET_FOLDER = "./target/classes/public";
 
 // fonts
-c.FOLDER_FONTS            = './node_modules/font-awesome/fonts/*';
-c.TARGET_FOLDER_FONTS     = 'fonts';
+c.FOLDER_FONTS        = './node_modules/font-awesome/fonts/*';
+c.TARGET_FOLDER_FONTS = 'fonts';
 
 // images
-c.FOLDER_IMAGES            = './resources/images';
-c.FILES_IMAGES             = './resources/images/**';
-c.TARGET_FOLDER_IMAGES     = 'images';
+c.FOLDER_IMAGES        = './resources/images';
+c.FILES_IMAGES         = './resources/images/**';
+c.TARGET_FOLDER_IMAGES = 'images';
 
 // less
-c.FOLDER_LESS           = './resources/less';
-c.FILES_LESS            = './resources/less/**';
-c.PATH_LESS_ENTRY       = './resources/less/app.less';
-c.TARGET_FILE_CSS       = 'app.css';
-c.TARGET_PATH_CSS       = 'css/app.css';
-c.TARGET_FOLDER_CSS     = 'css';
+c.FOLDER_LESS       = './resources/less';
+c.FILES_LESS        = './resources/less/**';
+c.PATH_LESS_ENTRY   = './resources/less/app.less';
+c.TARGET_FILE_CSS   = 'app.css';
+c.TARGET_PATH_CSS   = 'css/app.css';
+c.TARGET_FOLDER_CSS = 'css';
 
 // js
-c.FOLDER_JS            = './resources/js';
-c.FILES_JS             = './resources/js/**';
-c.PATH_JS_ENTRY        = './resources/js/some-lib.js';
-c.TARGET_FILE_JS       = 'some-lib.js';
-c.TARGET_PATH_JS       = 'js/some-lib.js';
-c.TARGET_FOLDER_JS     = 'js';
+c.FOLDER_JS        = './resources/js';
+c.FILES_JS         = './resources/js/**';
+c.PATH_JS_ENTRY    = './resources/js/some-lib.js';
+c.TARGET_FILE_JS   = 'some-lib.js';
+c.TARGET_PATH_JS   = 'js/some-lib.js';
+c.TARGET_FOLDER_JS = 'js';
 
 // index file
 c.PATH_INDEX = "./resources/html/index.html";
