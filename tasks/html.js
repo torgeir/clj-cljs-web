@@ -1,15 +1,15 @@
-var embedlr    = require('gulp-embedlr'),
-    path       = require('path'),
-    gulp       = require('gulp'),
-    gulpif     = require('gulp-if'),
-    handlebars = require('gulp-compile-handlebars'),
-    minhtml    = require('gulp-htmlmin');
-
-var c = require('./config');
-
 module.exports = function (minify) {
 
   return function () {
+
+    var embedlr    = require('gulp-embedlr'),
+        gulp       = require('gulp'),
+        gulpif     = require('gulp-if'),
+        handlebars = require('gulp-compile-handlebars'),
+        minhtml    = require('gulp-htmlmin'),
+        path       = require('path');
+
+    var c = require('./config');
 
     var manifest;
 

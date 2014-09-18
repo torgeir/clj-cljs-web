@@ -1,16 +1,17 @@
-var gulpif     = require('gulp-if'),
-    less       = require('gulp-less'),
-    mincss     = require('gulp-minify-css'),
-    notify     = require('gulp-notify'),
-    sourcemaps = require('gulp-sourcemaps'),
-    autoprefix = require('gulp-autoprefixer'),
-    gulp       = require('gulp');
-
-var c = require('./config');
-
 module.exports = function (minify) {
 
   return function () {
+
+    var autoprefix = require('gulp-autoprefixer'),
+        gulp       = require('gulp'),
+        gulpif     = require('gulp-if'),
+        less       = require('gulp-less'),
+        mincss     = require('gulp-minify-css'),
+        notify     = require('gulp-notify'),
+        sourcemaps = require('gulp-sourcemaps');
+
+    var c = require('./config');
+
     return gulp.src(c.PATH_LESS_ENTRY)
       .pipe(gulpif(!minify, sourcemaps.init()))
       .pipe(gulpif(minify, less(), less().on('error', c.handleErrors('Less'))))

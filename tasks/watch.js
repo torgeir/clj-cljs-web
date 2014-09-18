@@ -1,10 +1,12 @@
-var gulp       = require('gulp'),
-    livereload = require('gulp-livereload');
-
-var c = require('./config');
-
 module.exports = function () {
+
   return function () {
+
+    var gulp       = require('gulp'),
+        livereload = require('gulp-livereload');
+
+    var c = require('./config');
+
     gulp.watch(c.PATH_INDEX,   ['html']);
     gulp.watch(c.FILES_LESS,   ['less']);
     gulp.watch(c.FILES_IMAGES, ['images']);

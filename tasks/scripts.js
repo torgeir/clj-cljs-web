@@ -1,27 +1,26 @@
-var gulp       = require('gulp'),
-    buffer     = require('vinyl-buffer'),
-    browserify = require('browserify'),
-    es6ify     = require('es6ify'),
-    gulp       = require('gulp'),
-    gulpif     = require('gulp-if'),
-    notify     = require('gulp-notify'),
-    source     = require('vinyl-source-stream'),
-    uglify     = require('gulp-uglify'),
-    watchify   = require('watchify');
-
-var c = require("./config");
-
-var watch = process.env.GULP_IS_WATCH;
-
 module.exports = function scripts (minify) {
 
   return function () {
+
+    var buffer     = require('vinyl-buffer'),
+        browserify = require('browserify'),
+        es6ify     = require('es6ify'),
+        gulp       = require('gulp'),
+        gulpif     = require('gulp-if'),
+        notify     = require('gulp-notify'),
+        source     = require('vinyl-source-stream'),
+        uglify     = require('gulp-uglify'),
+        watchify   = require('watchify');
+
+    var c = require("./config");
 
     es6ify.traceurOverrides = {
       experimental: true,
       blockBinding: true,
       asyncFunctions: true
     };
+
+    var watch = process.env.GULP_IS_WATCH;
 
     var bundler = browserify(es6ify.runtime, {
       debug: !minify, // source maps
