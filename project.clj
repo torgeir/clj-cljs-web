@@ -69,6 +69,7 @@
                       [gulp-uglify "^1.0.1"]
                       [gulp-util "^3.0.1"]
                       [gulp-compile-handlebars "^0.2.0"]
+                      [jshint-stylish "^0.4.0"]
                       [open "^0.0.5"]
                       [react "^0.11.1"]
                       [serve-static "^1.6.1"]
