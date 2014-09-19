@@ -50,7 +50,11 @@ c.TARGET_FOLDER_ALL = [
     return path.join(folder, "**");
   });
 
-c.handleErrors = function handleErrors (description) {
+c.notify = function (title, message) {
+  return notify({ title: title, message: message });
+};
+
+c.notifyError = function notifyError (description) {
   return function () {
     var args = [].slice.call(arguments);
     notify.onError({

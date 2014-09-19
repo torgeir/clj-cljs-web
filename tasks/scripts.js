@@ -7,7 +7,6 @@ module.exports = function scripts (minify) {
         es6ify     = require('es6ify'),
         gulp       = require('gulp'),
         gulpif     = require('gulp-if'),
-        notify     = require('gulp-notify'),
         source     = require('vinyl-source-stream'),
         uglify     = require('gulp-uglify'),
         watchify   = require('watchify');
@@ -43,12 +42,12 @@ module.exports = function scripts (minify) {
 
     function rebundle () {
       var stream = bundler.bundle();
-      return gulpif(minify, stream, stream.on('error', c.handleErrors('Browserify')))
+      return gulpif(minify, stream, stream.on('error', c.notifyError('Browserify')))
         .pipe(source(c.TARGET_FILE_JS))
         .pipe(buffer())
         .pipe(gulpif(minify, uglify()))
         .pipe(gulp.dest(c.target(c.TARGET_FOLDER_JS)))
-        .pipe(gulpif(watch, notify({ title: "Browserify", message: 'reloaded' })));
+        .pipe(gulpif(watch, c.notify("Browserify", 'reloaded')));
     }
   };
 };

@@ -7,14 +7,13 @@ module.exports = function (minify) {
         gulpif     = require('gulp-if'),
         less       = require('gulp-less'),
         mincss     = require('gulp-minify-css'),
-        notify     = require('gulp-notify'),
         sourcemaps = require('gulp-sourcemaps');
 
     var c = require('./config');
 
     return gulp.src(c.PATH_LESS_ENTRY)
       .pipe(gulpif(!minify, sourcemaps.init()))
-      .pipe(gulpif(minify, less(), less().on('error', c.handleErrors('Less'))))
+      .pipe(gulpif(minify, less(), less().on('error', c.notifyError('Less'))))
       .pipe(autoprefix('last 1 versions'))
       .pipe(gulpif(!minify, sourcemaps.write({ sourceRoot: '../' + c.FOLDER_LESS })))
       .pipe(gulpif(minify, mincss({
@@ -24,6 +23,6 @@ module.exports = function (minify) {
         compatibility: true
       })))
       .pipe(gulp.dest(c.target(c.TARGET_FOLDER_CSS)))
-      .pipe(gulpif(!minify, notify({ title: "Less", message: 'reloaded' })));
+      .pipe(gulpif(!minify, c.notify("Less", 'reloaded')));
   };
 };
