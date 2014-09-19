@@ -1,4 +1,5 @@
 (ns web
+  (:gen-class)
   (:require [org.httpkit.server :refer [run-server]]
             [compojure.core :refer [defroutes GET]]
             [compojure.route :refer [resources]]))
