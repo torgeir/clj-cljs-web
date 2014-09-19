@@ -1,8 +1,8 @@
-(defproject hello-repl "0.1.0-SNAPSHOT"
+(defproject clj-cljs-web "0.1.0-SNAPSHOT"
 
-  :description "clj-cljs-template"
+  :description "clj cljs template project, with browser repl vim fireplace setup"
 
-  :url "https://github.com/torgeir/clj-cljs-browser-repl-vim-fireplace-setup"
+  :url "https://github.com/torgeir/clj-cljs-web"
 
   :dependencies [[org.clojure/clojurescript "0.0-2280"]
                  [org.clojure/clojure "1.6.0"]
@@ -19,10 +19,14 @@
 
   :main web
 
+  :aot :all
+
+  :prep-tasks ["javac" "compile" ["npm" "run" "make"]]
+
   :profiles {
              :prod {:cljsbuild {:builds [{:source-paths ["src/cljs"]
                                           :compiler {:output-to "target/classes/public/cljs/app.js"
-                                                     :externs ["externs.js"]
+                                                     :externs ["externs/react.js"]
                                                      :optimizations :advanced
                                                      :pretty-print false}}]}}
 
@@ -33,18 +37,19 @@
                                          :compiler {:output-to  "target/classes/public/cljs/app.js"
                                                     ; :output-dir "target/classes/public/cljs"
                                                     ; :source-map "target/classes/public/cljs/app.js.map"
-                                                    :externs ["externs.js"]
                                                     :optimizations :whitespace
                                                     :pretty-print true}}]}
                    :injections [(use 'web)]}}
 
   :nodejs {:scripts {:make  "./node_modules/.bin/gulp"
                      :clean "./node_modules/.bin/gulp clean"
+                     :test "./node_modules/.bin/gulp test"
                      :watch "GULP_IS_WATCH=true ./node_modules/.bin/gulp watch"}}
 
   :node-dependencies [[bluebird "^2.3.2"]
                       [browserify "^5.11.2"]
                       [connect "^3.2.0"]
+                      [chai "^1.9.1"]
                       [del "^0.1.3"]
                       [es6ify "^1.3.0"]
                       [font-awesome "^4.2.0"]
@@ -61,6 +66,7 @@
                       [gulp-less "^1.3.5"]
                       [gulp-livereload "^2.1.1"]
                       [gulp-minify-css "^0.3.8"]
+                      [gulp-mocha "^1.1.0"]
                       [gulp-notify "^1.6.0"]
                       [gulp-postcss "^1.0.2"]
                       [gulp-rev "^1.1.0"]

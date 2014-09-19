@@ -24,13 +24,16 @@ c.TARGET_FOLDER_CSS = 'css';
 
 // js
 c.FOLDER_JS        = './resources/js';
-c.PATH_JS_ENTRY    = './resources/js/some-lib.js';
-c.TARGET_FILE_JS   = 'some-lib.js';
-c.TARGET_PATH_JS   = 'js/some-lib.js';
+c.PATH_JS_ENTRY    = './resources/js/lib.js';
+c.TARGET_FILE_JS   = 'lib.js';
+c.TARGET_PATH_JS   = 'js/lib.js';
 c.TARGET_FOLDER_JS = 'js';
 
 // index file
 c.PATH_INDEX = "./resources/html/index.html";
+
+// tests
+c.FOLDER_TESTS = './resources/js/tests';
 
 // rev
 c.FILES_REV = [

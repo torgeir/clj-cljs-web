@@ -10,5 +10,14 @@
     "undef": true,
     "unused": "vars",
     "strict": false,
-    "browser": true
+    "browser": true,
+    "globals"   : {
+      /* mocha (false means readonly) */
+      "describe"   : false,
+      "it"         : false,
+      "before"     : false,
+      "beforeEach" : false,
+      "after"      : false,
+      "afterEach"  : false
+    }
 }
