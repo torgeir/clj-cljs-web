@@ -7,9 +7,9 @@ module.exports = function () {
 
     var c = require('./config');
 
-    gulp.watch(c.PATH_INDEX,   ['html']);
-    gulp.watch(c.FILES_LESS,   ['less']);
-    gulp.watch(c.FILES_IMAGES, ['images']);
+    gulp.watch(c.PATH_INDEX,           ['html']);
+    gulp.watch(c.all(c.FOLDER_LESS),   ['less']);
+    gulp.watch(c.all(c.FOLDER_IMAGES), ['images']);
 
     livereload.listen();
     gulp.watch(c.TARGET_FOLDER_ALL).on('change', livereload.changed);

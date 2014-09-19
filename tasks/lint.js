@@ -26,7 +26,7 @@ module.exports = function (minify) {
       return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
     });
 
-    return gulp.src(c.FILES_JS)
+    return gulp.src(c.all(c.FOLDER_JS))
       .pipe(jshint('.jshintrc'))
       .pipe(jshint.reporter('jshint-stylish'))
       .pipe(gulpif(!minify, jshintNotifyOnError));

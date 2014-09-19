@@ -8,7 +8,7 @@ module.exports = function () {
 
     var c = require('./config');
 
-    return gulp.src(c.FILES_IMAGES)
+    return gulp.src(c.all(c.FOLDER_IMAGES))
       .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
       .pipe(gulp.dest(c.target(c.TARGET_FOLDER_IMAGES)));
   };

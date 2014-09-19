@@ -2,14 +2,8 @@ var notify = require('gulp-notify'),
     path   = require('path');
 
 var c = exports;
-
-c.target = function (folder) {
-  var root = c.TARGET_FOLDER;
-  if (folder) {
-    return path.join(root, folder);
-  }
-  return root;
-};
+c.all = allFiles;
+c.target = targetFolder;
 
 c.TARGET_FOLDER = "./target/classes/public";
 
@@ -19,12 +13,10 @@ c.TARGET_FOLDER_FONTS = 'fonts';
 
 // images
 c.FOLDER_IMAGES        = './resources/images';
-c.FILES_IMAGES         = './resources/images/**';
 c.TARGET_FOLDER_IMAGES = 'images';
 
 // less
 c.FOLDER_LESS       = './resources/less';
-c.FILES_LESS        = './resources/less/**';
 c.PATH_LESS_ENTRY   = './resources/less/app.less';
 c.TARGET_FILE_CSS   = 'app.css';
 c.TARGET_PATH_CSS   = 'css/app.css';
@@ -32,7 +24,6 @@ c.TARGET_FOLDER_CSS = 'css';
 
 // js
 c.FOLDER_JS        = './resources/js';
-c.FILES_JS         = './resources/js/**';
 c.PATH_JS_ENTRY    = './resources/js/some-lib.js';
 c.TARGET_FILE_JS   = 'some-lib.js';
 c.TARGET_PATH_JS   = 'js/some-lib.js';
@@ -54,14 +45,14 @@ c.TARGET_FOLDER_ALL = [
     c.TARGET_FOLDER_IMAGES,
     c.TARGET_FOLDER_JS
   ]
-  .map(c.target)
+  .map(targetFolder)
   .map(function (folder) {
     return folder + "/**";
   });
 
 c.handleErrors = function handleErrors (description) {
   return function () {
-    var args = Array.prototype.slice.call(arguments);
+    var args = [].slice.call(arguments);
     notify.onError({
       title: description + " error",
       message: "<%= error.message %>"
@@ -69,3 +60,15 @@ c.handleErrors = function handleErrors (description) {
     this.emit('end'); // Keep gulp from hanging on this task
   };
 };
+
+function allFiles (folder) {
+  return path.join(folder, '**');
+}
+
+function targetFolder (folder) {
+  var root = c.TARGET_FOLDER;
+  if (folder) {
+    return path.join(root, folder);
+  }
+  return root;
+}
