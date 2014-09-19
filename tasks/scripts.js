@@ -53,4 +53,4 @@ module.exports = function scripts (minify) {
   };
 };
 
-module.exports.deps = ['jshint'];
+module.exports.deps = ['lint'];
