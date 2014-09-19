@@ -47,7 +47,7 @@ c.TARGET_FOLDER_ALL = [
   ]
   .map(targetFolder)
   .map(function (folder) {
-    return folder + "/**";
+    return path.join(folder, "**");
   });
 
 c.handleErrors = function handleErrors (description) {
